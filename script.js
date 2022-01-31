@@ -1,65 +1,59 @@
 // Project RPS Algorithm 
+
 //note RPS = rock, paper, or scissors
-//Rock Paper and Scissors are delcared as variables and given a number to correspond to.
-let rock = 1
-let paper = 2
-let scissors = 3
-//there is a let that holds the user pick
+
+//The user is prompted to pick a hand. This choice is saved to a variable.
 let playerSelection = prompt("Rock, Paper, or Scissors?", "")
+console.log(playerSelection);
+
+//the player's choice is converted to UPPERCASE to be case insensitive
+playerSelection = playerSelection.toUpperCase()
 console.log(playerSelection)
+//the computer is given a variable to hold its choice.
+let computerSelection;
 
-// let rock = 1
-// let paper = 2
-// let scissors = 3
-
-
-//there is a let that holds the computer pick
-let computerSelection = ('')
-// the user is prompted to pick rock, paper, or scissors
-
-// the user inputs either rock, paper, or scissors
-
-// the computer randomly picks a number between 1 and 3
+// the computer is given a way to randomly pick a number between 1 and 3
 function computerPick(computerSelection) {
-    computerSelection = Math.floor(Math.random()*3) + 1;
+    return computerSelection = Math.floor(Math.random()*3) + 1;
     console.log(computerSelection);
     
 }
-computerPick()
+
+//the computer randomly picks a number 
+computerPick();
+console.log(computerSelection)
 // the number is converted to RPS
 
-    if (computerSelection === 1) {
-        computerSelection = 'rock';
-    } else if (computerSelection === 2) {
-        computerSelection = 'paper';
-    } else {
-        computerSelection = 'scissors';
-    }
+if (computerSelection == 1) {
+    computerSelection = 'ROCK';
+} else if (computerSelection == 2) {
+    computerSelection = 'PAPER';
+} else if (computerSelection == 3) {
+    computerSelection = 'SCISSORS';
+} else {computerSelection = 'No true statements'}
 console.log(computerSelection)
-// the computer plays it's pick
 
+// these two values are compared and the result is alerted.
 
-// these two values are compared and the winner is declared.
-//rock > scissors
-
-if (computerSelection == 'rock' && playerSelection == 'rock') {
-    alert('Tie');
-} else if (computerSelection == 'rock' && playerSelection == 'paper') {
+if (computerSelection == 'ROCK' && playerSelection == 'ROCK') {
+    alert('It\'s a tie.');
+} else if (computerSelection == 'ROCK' && playerSelection == 'PAPER') {
     alert('You Win!');
-} else if (computerSelection == 'rock' && playerSelection == 'scissors') {
+} else if (computerSelection == 'ROCK' && playerSelection == 'SCISSORS') {
     alert('You lose...');
-} else if (computerSelection == 'paper' && playerSelection == 'paper') {
+} else if (computerSelection == 'PAPER' && playerSelection == 'PAPER') {
     alert('It\'s a tie.');
-} else if (computerSelection == 'paper' && playerSelection == 'rock') {
+} else if (computerSelection == 'PAPER' && playerSelection == 'ROCK') {
     alert('You lose...');
-} else if (computerSelection == 'paper' && playerSelection == 'scissors') {
+} else if (computerSelection == 'PAPER' && playerSelection == 'SCISSORS') {
     alert('You win!');
-} else if (computerSelection == 'scissors' && playerSelection == 'scissors') {
+} else if (computerSelection == 'SCISSORS' && playerSelection == 'SCISSORS') {
     alert('It\'s a tie.');
-} else if (computerSelection == 'scissors' && playerSelection == 'rock') {
+} else if (computerSelection == 'SCISSORS' && playerSelection == 'ROCK') {
     alert('You win!');
-} else if (computerSelection == 'scissors' && playerSelection == 'paper') {
+} else if (computerSelection == 'SCISSORS' && playerSelection == 'PAPER') {
     alert('You lose...');
 }
-// The user is prompted to play again
+// the page is refreshed so the user may play again.
 window.location.reload();
+
