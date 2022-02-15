@@ -1,76 +1,82 @@
-//test if the file is linked to the html
+//Test if the file is linked to the html
 console.log("test")
-//delcare constants for each button and link them to the dom
+//Delcare constants for each button and link them to the dom
 const rockBtn = document.getElementById("rock-btn")
 const paperBtn = document.getElementById("paper-btn")
 const scissorsBtn = document.getElementById("scissors-btn")
-//create an empty let for each reassignable variable
-let playChoice = ""
-let computerChoice = ""
+//Create an empty let for each reassignable variable
+let playerSelection = ""
+let computerSelection = ""
 let resultMessage = ""
 //Grab the <p> elements from the dom and make them useable in JS
 let playerEl = document.getElementById("player-el")
 let computerEl = document.getElementById("computer-el")
 let resultEl = document.getElementById("result-el")
 
-function computerPick() {
-    //generates a random number between 1 and 3
-    computerChoice = Math.floor(Math.random()*3) + 1;
-    //takes random number and assigns it to a hand
-    if (computerChoice === 1) {
-        computerChoice = 'ROCK';
-    } else if (computerChoice === 2) {
-        computerChoice = 'PAPER';
-    } else if (computerChoice === 3) {
-        computerChoice = 'SCISSORS';
+function computerPlay() {
+    //Generates a random number between 1 and 3
+    computerSelection = Math.floor(Math.random()*3) + 1;
+    //Takes random number and assigns it to a hand
+    if (computerSelection === 1) {
+        computerSelection = 'Rock';
+    } else if (computerSelection === 2) {
+        computerSelection = 'PAPER';
+    } else if (computerSelection === 3) {
+        computerSelection = 'SCISSORS';
     }
     //Takes randomly generated hand and displays it with text on the html
-    computerEl.textContent = "Computer chose - " + computerChoice
+    computerEl.textContent = "Computer chose - " + computerSelection
 }
 //
-function runGame() {
-    //game logic
-    computerPick();
-    if (computerChoice == 'ROCK' && playChoice == 'ROCK') {
+function playRound() {
+    //Game logic
+    computerPlay();
+    if (computerSelection == 'Rock' && playerSelection == 'Rock') {
         resultMessage = "It\'s a tie.";
-    } else if (computerChoice == 'ROCK' && playChoice == 'PAPER') {
+    } else if (computerSelection == 'Rock' && playerSelection == 'PAPER') {
         resultMessage = "You Win!";
-    } else if (computerChoice == 'ROCK' && playChoice == 'SCISSORS') {
+    } else if (computerSelection == 'Rock' && playerSelection == 'SCISSORS') {
         resultMessage = "You lose...";
-    } else if (computerChoice == 'PAPER' && playChoice == 'PAPER') {
+    } else if (computerSelection == 'PAPER' && playerSelection == 'PAPER') {
         resultMessage = "It\'s a tie.";
-    } else if (computerChoice == 'PAPER' && playChoice == 'ROCK') {
+    } else if (computerSelection == 'PAPER' && playerSelection == 'Rock') {
         resultMessage = "You lose...";
-    } else if (computerChoice == 'PAPER' && playChoice == 'SCISSORS') {
+    } else if (computerSelection == 'PAPER' && playerSelection == 'SCISSORS') {
         resultMessage = "You win!";
-    } else if (computerChoice == 'SCISSORS' && playChoice == 'SCISSORS') {
+    } else if (computerSelection == 'SCISSORS' && playerSelection == 'SCISSORS') {
         resultMessage = "It\'s a tie.";
-    } else if (computerChoice == 'SCISSORS' && playChoice == 'ROCK') {
+    } else if (computerSelection == 'SCISSORS' && playerSelection == 'Rock') {
         resultMessage = "You win!";
-    } else if (computerChoice == 'SCISSORS' && playChoice == 'PAPER') {
+    } else if (computerSelection == 'SCISSORS' && playerSelection == 'PAPER') {
         resultMessage = "You lose...";
     }
-    //displays result onto html
+    //Displays result onto html
     resultEl.textContent = "Result - " + resultMessage
 }
 
 
-//makes each button interactive, sets the playerChoice to it, and calls the function to start game
+//Makes each button interactive, sets the playerChoice to it, and calls the function to start game
 rockBtn.addEventListener("click", function(){
-    playChoice = "ROCK"
+    playerSelection = "Rock"
     playerEl.textContent = "You chose - " + "Rock"
-    runGame()
+    playRound()
 })
 
 paperBtn.addEventListener("click", function(){
-    playChoice = "PAPER"
+    playerSelection = "PAPER"
     playerEl.textContent = "You chose - " + "Paper"
-    runGame()
+    playRound()
 })
 
 scissorsBtn.addEventListener("click", function(){
-    playChoice = "SCISSORS"
+    playerSelection = "SCISSORS"
     playerEl.textContent = "You chose - " + "Scissors"
-    runGame()
+    playRound()
 })
 
+function game() {
+    for (let i = 0; i < 5; i++) {
+        computerPlay()
+     }
+     
+}
