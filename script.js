@@ -1,59 +1,76 @@
-// Project RPS Algorithm 
+//test if the file is linked to the html
+console.log("test")
+//delcare constants for each button and link them to the dom
+const rockBtn = document.getElementById("rock-btn")
+const paperBtn = document.getElementById("paper-btn")
+const scissorsBtn = document.getElementById("scissors-btn")
+//create an empty let for each reassignable variable
+let playChoice = ""
+let computerChoice = ""
+let resultMessage = ""
+//Grab the <p> elements from the dom and make them useable in JS
+let playerEl = document.getElementById("player-el")
+let computerEl = document.getElementById("computer-el")
+let resultEl = document.getElementById("result-el")
 
-//note RPS = rock, paper, or scissors
-
-//The user is prompted to pick a hand. This choice is saved to a variable.
-let playerSelection = prompt("Rock, Paper, or Scissors?", "")
-console.log(playerSelection);
-
-//the player's choice is converted to UPPERCASE to be case insensitive
-playerSelection = playerSelection.toUpperCase()
-console.log(playerSelection)
-//the computer is given a variable to hold its choice.
-let computerSelection;
-
-// the computer is given a way to randomly pick a number between 1 and 3
-function computerPick(computerSelection) {
-    return computerSelection = Math.floor(Math.random()*3) + 1;
-    console.log(computerSelection);
-    
+function computerPick() {
+    //generates a random number between 1 and 3
+    computerChoice = Math.floor(Math.random()*3) + 1;
+    //takes random number and assigns it to a hand
+    if (computerChoice === 1) {
+        computerChoice = 'ROCK';
+    } else if (computerChoice === 2) {
+        computerChoice = 'PAPER';
+    } else if (computerChoice === 3) {
+        computerChoice = 'SCISSORS';
+    }
+    //Takes randomly generated hand and displays it with text on the html
+    computerEl.textContent = "Computer chose - " + computerChoice
+}
+//
+function runGame() {
+    //game logic
+    computerPick();
+    if (computerChoice == 'ROCK' && playChoice == 'ROCK') {
+        resultMessage = "It\'s a tie.";
+    } else if (computerChoice == 'ROCK' && playChoice == 'PAPER') {
+        resultMessage = "You Win!";
+    } else if (computerChoice == 'ROCK' && playChoice == 'SCISSORS') {
+        resultMessage = "You lose...";
+    } else if (computerChoice == 'PAPER' && playChoice == 'PAPER') {
+        resultMessage = "It\'s a tie.";
+    } else if (computerChoice == 'PAPER' && playChoice == 'ROCK') {
+        resultMessage = "You lose...";
+    } else if (computerChoice == 'PAPER' && playChoice == 'SCISSORS') {
+        resultMessage = "You win!";
+    } else if (computerChoice == 'SCISSORS' && playChoice == 'SCISSORS') {
+        resultMessage = "It\'s a tie.";
+    } else if (computerChoice == 'SCISSORS' && playChoice == 'ROCK') {
+        resultMessage = "You win!";
+    } else if (computerChoice == 'SCISSORS' && playChoice == 'PAPER') {
+        resultMessage = "You lose...";
+    }
+    //displays result onto html
+    resultEl.textContent = "Result - " + resultMessage
 }
 
-//the computer randomly picks a number 
-computerPick();
-console.log(computerSelection)
-// the number is converted to RPS
 
-if (computerSelection == 1) {
-    computerSelection = 'ROCK';
-} else if (computerSelection == 2) {
-    computerSelection = 'PAPER';
-} else if (computerSelection == 3) {
-    computerSelection = 'SCISSORS';
-} else {computerSelection = 'No true statements'}
-console.log(computerSelection)
+//makes each button interactive, sets the playerChoice to it, and calls the function to start game
+rockBtn.addEventListener("click", function(){
+    playChoice = "ROCK"
+    playerEl.textContent = "You chose - " + "Rock"
+    runGame()
+})
 
-// these two values are compared and the result is alerted.
+paperBtn.addEventListener("click", function(){
+    playChoice = "PAPER"
+    playerEl.textContent = "You chose - " + "Paper"
+    runGame()
+})
 
-if (computerSelection == 'ROCK' && playerSelection == 'ROCK') {
-    alert('It\'s a tie.');
-} else if (computerSelection == 'ROCK' && playerSelection == 'PAPER') {
-    alert('You Win!');
-} else if (computerSelection == 'ROCK' && playerSelection == 'SCISSORS') {
-    alert('You lose...');
-} else if (computerSelection == 'PAPER' && playerSelection == 'PAPER') {
-    alert('It\'s a tie.');
-} else if (computerSelection == 'PAPER' && playerSelection == 'ROCK') {
-    alert('You lose...');
-} else if (computerSelection == 'PAPER' && playerSelection == 'SCISSORS') {
-    alert('You win!');
-} else if (computerSelection == 'SCISSORS' && playerSelection == 'SCISSORS') {
-    alert('It\'s a tie.');
-} else if (computerSelection == 'SCISSORS' && playerSelection == 'ROCK') {
-    alert('You win!');
-} else if (computerSelection == 'SCISSORS' && playerSelection == 'PAPER') {
-    alert('You lose...');
-}
-// the page is refreshed so the user may play again.
-window.location.reload();
+scissorsBtn.addEventListener("click", function(){
+    playChoice = "SCISSORS"
+    playerEl.textContent = "You chose - " + "Scissors"
+    runGame()
+})
 
